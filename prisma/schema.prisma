@@ -10,7 +10,7 @@ generator client {
 model Task {
   id          String    @id @default(uuid())
   title       String
-  description String    @default("")
+  description String    @default("") @db.NVarChar(Max)
   status      String    @default("todo")
   priority    String    @default("medium")
   duration    Int       @default(30)
@@ -24,10 +24,10 @@ model Task {
 
 model Meeting {
   id          String    @id @default(uuid())
-  transcript  String
-  summary     String
-  keyPoints   String    @default("[]")
-  actionItems String    @default("[]")
+  transcript  String    @db.NVarChar(Max)
+  summary     String    @db.NVarChar(Max)
+  keyPoints   String    @default("[]") @db.NVarChar(Max)
+  actionItems String    @default("[]") @db.NVarChar(Max)
   sourceName  String?
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
